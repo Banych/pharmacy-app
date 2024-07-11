@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "clinyong.vscode-css-modules",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "viijay-kr.react-ts-css",
+        "shardulm94.trailing-spaces",
+    ]
+}
