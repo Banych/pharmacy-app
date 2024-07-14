@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background-color: #323232;
+  border-radius: 16px;
+}
+
+.container form input {
+  background-color: rgb(106, 106, 106);
+  border-radius: 8px;
+  border: 1px solid rgb(185, 185, 185);
+  padding: 8px 16px;
+}
+
+.back-button {
+  background-color: #3a3a3a;
+  flex-grow: 1;
+}
+
+.add-button {
+  flex-grow: 1;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 8px;
+  gap: 4px;
+}
+
+.error-message {
+    color: rgb(209, 59, 59);
+    font-weight: 700;
+}
