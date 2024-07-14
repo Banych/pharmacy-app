@@ -9,6 +9,7 @@ function App() {
       <div className={styles.menu}>
         <Link to={"/"}>Home</Link>
         <Link to={"/medicines"}>Medicines</Link>
+        <Link to={"/sales"}>Sales</Link>
       </div>
       <Outlet />
     </div>

@@ -9,7 +9,7 @@ export interface StoreDB extends DBSchema {
     indexes: { "by-name": string; "by-category": string; "by-stock": number };
   };
   sales: {
-    key: string;
+    key: number;
     value: Sale;
   };
 }
