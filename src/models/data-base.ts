@@ -4,12 +4,12 @@ import { Sale } from "./sales";
 
 export interface StoreDB extends DBSchema {
   medicines: {
-    key: keyof Medicine;
+    key: number;
     value: Medicine;
     indexes: { "by-name": string; "by-category": string; "by-stock": number };
   };
   sales: {
-    key: keyof Sale;
+    key: string;
     value: Sale;
   };
 }

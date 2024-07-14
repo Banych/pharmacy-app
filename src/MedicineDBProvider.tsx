@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 import { IDBPDatabase, openDB } from "idb";
 
 import { StoreDB } from "./models/data-base";
@@ -9,23 +15,31 @@ export const MedicineDBContext = createContext<IDBPDatabase<StoreDB> | null>(
 
 const MedicineDBProvider = ({ children }: PropsWithChildren<unknown>) => {
   const [db, setDb] = useState<IDBPDatabase<StoreDB> | null>(null);
-
-  useEffect(() => {
-    openDB<StoreDB>("medicines", 1, {
+  const connectDB = async () => {
+    const DB = await openDB<StoreDB>("medicines", 1, {
       upgrade(db) {
-        const medicines = db.createObjectStore("medicines", { keyPath: "id" });
+        const medicines = db.createObjectStore("medicines", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
 
         medicines.createIndex("by-name", "name");
         medicines.createIndex("by-category", "category");
         medicines.createIndex("by-stock", "stock");
       },
-    }).then((db) => setDb(db));
+    });
+    setDb(DB);
+  };
+  useEffect(() => {
+    connectDB();
   }, []);
 
   return (
-    <MedicineDBContext.Provider value={db}>
-      {children}
-    </MedicineDBContext.Provider>
+    <Suspense fallback={<div>Loading DB...</div>}>
+      <MedicineDBContext.Provider value={db}>
+        {children}
+      </MedicineDBContext.Provider>
+    </Suspense>
   );
 };
 
