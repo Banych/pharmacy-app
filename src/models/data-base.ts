@@ -6,10 +6,16 @@ export interface StoreDB extends DBSchema {
   medicines: {
     key: number;
     value: Medicine;
-    indexes: { "by-name": string; "by-category": string; "by-stock": number };
+    indexes: {
+      "by-name": string;
+      "by-category": string;
+      "by-stock": number;
+      "by-id": number;
+    };
   };
   sales: {
     key: number;
     value: Sale;
+    indexes: { "by-medicine-id": string };
   };
 }
