@@ -26,6 +26,14 @@ const MedicineDBProvider = ({ children }: PropsWithChildren<unknown>) => {
         medicines.createIndex("by-name", "name");
         medicines.createIndex("by-category", "category");
         medicines.createIndex("by-stock", "stock");
+        medicines.createIndex("by-id", "id", {unique: true})
+
+        const sales = db.createObjectStore("sales", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
+
+        sales.createIndex("by-medicine-id", "medicineId");
       },
     });
     setDb(DB);

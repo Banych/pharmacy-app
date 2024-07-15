@@ -13,6 +13,7 @@ export default () => {
   const [isAddLoading, setIsAddLoading] = useState<boolean>(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
   const [isFetchLoading, setIsFetchLoading] = useState<boolean>(false);
+  const [isUpdateLoading, setIsUpdateLoading] = useState<boolean>(false);
 
   const addItem = useCallback(
     async (item: Omit<Medicine, "id">) => {
@@ -41,12 +42,24 @@ export default () => {
     return db?.getAll("medicines");
   }, [db]);
 
+  const updateItem = useCallback(
+    async (item: Medicine) => {
+      setIsUpdateLoading(true);
+      await delay(700);
+      setIsUpdateLoading(false);
+      return db?.put("medicines", item);
+    },
+    [db]
+  );
+
   return {
     addItem,
     deleteItem,
     fetchItems,
+    updateItem,
     isAddLoading,
     isDeleteLoading,
     isFetchLoading,
+    isUpdateLoading,
   };
 };

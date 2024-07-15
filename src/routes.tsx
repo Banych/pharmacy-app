@@ -4,6 +4,7 @@ import App from "./App";
 import MedicinesList from "./components/medicines-list/MedicinesList";
 import { AddMedicine } from "./components/add-medicine/AddMedicine";
 import SalesList from "./components/sales-list/SalesList";
+import { AddSales } from "./components/add-sale/AddSale";
 
 export const router = createHashRouter([
   {
@@ -24,10 +25,10 @@ export const router = createHashRouter([
         path: "sales",
         children: [
           { path: "", element: <SalesList />, index: true },
-          // {
-          //   path: "add",
-          //   element: <AddMedicine />,
-          // },
+          {
+            path: "add",
+            element: <AddSales />,
+          },
         ],
       }
     ],

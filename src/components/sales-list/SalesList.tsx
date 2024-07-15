@@ -3,6 +3,7 @@ import styles from "./SalesList.module.css";
 import { useNavigate } from "react-router-dom";
 import { Sale } from "../../models/sales";
 import useSalesHook from "../../hooks/useSales.hook";
+import dayjs from "dayjs";
 
 const SalesList = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const SalesList = () => {
               <tr key={item.id} className={styles.item}>
                 <td>{item.medicineId}</td>
                 <td>{item.quantity}</td>
-                <td>{item.date.toString()}</td>
+                <td>{dayjs(item.date).format("DD.MM.YYYY")}</td>
                 <td className={styles["actions-column"]}>
                   <button
                     onClick={() => handleClickDelete(item.id!)}
