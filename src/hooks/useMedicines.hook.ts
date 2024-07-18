@@ -35,12 +35,25 @@ export default () => {
     [db]
   );
 
-  const fetchItems = useCallback(async () => {
-    setIsFetchLoading(true);
-    await delay(700);
-    setIsFetchLoading(false);
-    return db?.getAll("medicines");
-  }, [db]);
+  const fetchItems = useCallback(
+    async (search?: string) => {
+      setIsFetchLoading(true);
+      await delay(700);
+      setIsFetchLoading(false);
+      const items = await db?.getAll("medicines");
+
+      if (search) {
+        return items?.filter(
+          (item) =>
+            item.name.toLowerCase().includes(search.toLowerCase()) ||
+            item.category.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+
+      return items;
+    },
+    [db]
+  );
 
   const updateItem = useCallback(
     async (item: Medicine) => {

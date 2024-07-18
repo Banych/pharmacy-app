@@ -2,3 +2,10 @@
   background-color: rgb(48, 48, 48);
   border-radius: 8px;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 170px);
+}
