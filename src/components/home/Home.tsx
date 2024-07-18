@@ -3,7 +3,7 @@ import useMedicinesHook from "../../hooks/useMedicines.hook";
 import useSalesHook from "../../hooks/useSales.hook";
 import { Medicine } from "../../models/medicine";
 import { Sale } from "../../models/sales";
-import styles from "./Home.module.css"
+import styles from "./Home.module.css";
 
 export const Home = () => {
   const { fetchItems: fetchMedicines, isFetchLoading: isFetchMedicineLoading } =
@@ -49,18 +49,26 @@ export const Home = () => {
     <div>
       <h3>Home</h3>
       <div>
-        <div>
-          <h4 className={styles['div-h']}>Medicines count in stock</h4>
-          <span>{medicinesCount}</span>
-        </div>
-        <div>
-          <h4 className={styles['div-h']}>Sales count</h4>
-          <span>{salesCount}</span>
-        </div>
-        <div>
-          <h4 className={styles['div-h']}>Sold medicines</h4>
-          <span>{soldCount}</span>
-        </div>
+        {isFetchMedicineLoading || isFetchSalesLoading ? (
+          <div className={styles["loader-container"]}>
+            <div className="loader" />
+          </div>
+        ) : (
+          <>
+            <div>
+              <h4 className={styles["div-h"]}>Medicines count in stock</h4>
+              <span>{medicinesCount}</span>
+            </div>
+            <div>
+              <h4 className={styles["div-h"]}>Sales count</h4>
+              <span>{salesCount}</span>
+            </div>
+            <div>
+              <h4 className={styles["div-h"]}>Sold medicines</h4>
+              <span>{soldCount}</span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
